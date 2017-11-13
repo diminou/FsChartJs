@@ -1,0 +1,25 @@
+type project
+title
+    ChartJS
+owners
+    Dmitry Ivanov
+authors 
+    Dmitry Ivanov
+projectUrl
+    https://github.com/diminou/fs-chart-js
+iconUrl
+    https://raw.githubusercontent.com/diminou/fs-chart-js/master/docs/files/img/logo.png
+licenseUrl
+    https://github.com/diminou/fs-chart-js/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2015
+tags
+    data-visualisation jupyter
+summary
+    Visualisation for Jupyter notebooks with Chart.js
+description
+    Visualisation for Jupyter notebooks with Chart.js
+
+
