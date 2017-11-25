@@ -3,26 +3,32 @@ module ChartJS.Dataset
 open ChartJS.Chart
 
 
-let empty f = JsonData.initDict |> f
+let emptyDatasets = JsonData.initSeq
 
-let addToDict label dict element (f: JsonData -> 'a) = JsonData.AddKV label element dict |> f
+let addDataset dataset = JsonData.AddElement dataset
 
-let data dict d f = JsonData.AddKV "data" d dict |> f
+let datasets = JsonData.AddKV "datasets"
 
-let datasetType dict t f = JsonData.AddKV "type" (JsonData.OfString t) dict |> f
+let empty = JsonData.initDict
 
-let label dict l f = JsonData.AddKV "label" (JsonData.OfString l) dict |> f
+let addToDict label element = JsonData.AddKV label element
 
-let fillColour col f = (addToDict "fillColor") col f
+let data d  = JsonData.AddKV "data" d
 
-let strokeColour col f = (addToDict "strokeColor") col f
+let datasetType t = JsonData.AddKV "type" (JsonData.OfString t)
 
-let pointColour col f = (addToDict "pointColor") col f
+let label l = JsonData.AddKV "label" (JsonData.OfString l)
 
-let pointStrokeColour col f = (addToDict "pointStrokeColour") col f
+let fillColour col  = (addToDict "fillColor") col
 
-let pointHighlightFill col f = (addToDict "pointHighlightFill") col f
+let strokeColour col = (addToDict "strokeColor") col
 
-let pointHightlightStroke col f = addToDict "pointHightlightStroke" col f
+let pointColour col = (addToDict "pointColor") col
+
+let pointStrokeColour col = (addToDict "pointStrokeColour") col
+
+let pointHighlightFill col = (addToDict "pointHighlightFill") col
+
+let pointHightlightStroke col = addToDict "pointHightlightStroke" col
 
 let endConf dict = dict
