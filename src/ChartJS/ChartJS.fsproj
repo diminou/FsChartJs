@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="ChartJs.fs" />
     <Compile Include="Dataset.fs" />
+    <Compile Include="Options.fs" /> 
+    <Compile Include="Renderer.fs" />           
     <None Include="Script.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />

@@ -8,6 +8,7 @@ type Colour = {r: int; g: int; b: int; a: float}
 type JsonData =
     | CInt of int64
     | CFloat of double
+    | CBool of bool
     | CColour of Colour
     | CLabel of string
     | CIPoint of int64 * int64
@@ -18,6 +19,10 @@ type JsonData =
         static member ToString (jd: JsonData) =
             match jd with
                 | CInt n -> string n
+                | CBool b ->
+                    match b with
+                        | true -> "true"
+                        | false -> "false"
                 | CLabel s -> sprintf "'%s'" s
                 | CIPoint (x, y) -> sprintf "{x: %i, y: %i}" x y
                 | CFPoint (x, y) -> sprintf "{x: %f, y: %f}" x y
@@ -95,19 +100,3 @@ let buildChart (data: JsonData) (plotType: string) =
     JsonData.initDict
         |> JsonData.AddKV "type" jType
         |> JsonData.AddKV "data" data
-
-let renderChart (canvasName: string) (chartSpec: JsonData)=
-    sprintf """<canvas id='%s' width='400' height='400'></canvas>
-<script>
-requirejs(['https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js'],
-    function(chartJs){
-        var ctx = document.getElementById('%s').getContext('2d');
-        var myChart = new Chart(ctx, %s);
-    },
-    function(error){
-        console.log('error');
-        console.log(error);
-    }
-);
-</script>""" canvasName canvasName (JsonData.ToString chartSpec)
-
