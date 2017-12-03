@@ -19,6 +19,7 @@ type JsonData =
         static member ToString (jd: JsonData) =
             match jd with
                 | CInt n -> string n
+                | CFloat f -> string f
                 | CBool b ->
                     match b with
                         | true -> "true"
@@ -31,7 +32,7 @@ type JsonData =
                         |> String.concat ",\n"
                         |> sprintf "[%s]"
                 | CDict d ->
-                    Map.map (fun k v -> JsonData.ToString v) d
+                    Map.map (fun _ v -> JsonData.ToString v) d
                         |> Map.toSeq
                         |> Seq.map (fun (k, v) -> sprintf "%s: %s" k v)
                         |> String.concat ",\n"
